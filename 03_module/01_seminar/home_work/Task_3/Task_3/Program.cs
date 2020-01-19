@@ -69,12 +69,35 @@ namespace Task_3
         private static double aJ2(int j) =>
             1 / Math.Pow(2, j);
 
+        /// <summary>
+        /// Choose variant of sequence.
+        /// </summary>
+        /// <returns></returns>
+        private static int GetChoose()
+        {
+            string temp = Console.ReadLine();
+
+            while (temp != "1" && temp != "2")
+            {
+                Console.Write("Введите 1 или 2: ");
+
+                temp = Console.ReadLine();
+            }
+
+            return int.Parse(temp);
+        }
+
         static void Main(string[] args)
         {
             do
             {
                 Console.Clear();
-                
+
+                Console.Write("Введите 1, чтобы найти сумму для aj = 1 / j, " +
+                                  "и 2 - чтобы найти сумму для aj = 1 / (2 ^ j): ");
+
+                int choice = GetChoose();
+
                 // Upper bound of external sum.
                 int N = GetBound<int>("Введите верхнюю границу суммы: ",
                     val => val > 0);
@@ -86,7 +109,7 @@ namespace Task_3
                     double curResult = 0;
 
                     for (int j = 1; j <= i; j++)
-                        curResult += aJ2(j);
+                        curResult += choice == 1 ? aJ1(j) : aJ2(j);
 
                     return curResult;
                 };
