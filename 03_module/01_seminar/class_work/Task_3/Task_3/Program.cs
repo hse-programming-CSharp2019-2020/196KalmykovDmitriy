@@ -66,6 +66,11 @@ namespace Task_3
 
         static void Main(string[] args)
         {
+            // Cначала надо было сделать так:
+            // delegateConvertTemperature conv1 = tempConv.ConvertCelsiusToFahrenheit;
+            // delegateConvertTemperature conv2 = tempConv.ConvertFahrenheitToCelsius;
+            // Затем просто протестить их на введённом значении. (cw (conv1(val),  conv2(val)))
+
             TemperatureConverterlmp tempConv = new TemperatureConverterlmp();
 
             do

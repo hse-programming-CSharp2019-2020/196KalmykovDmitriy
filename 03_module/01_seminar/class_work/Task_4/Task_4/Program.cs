@@ -164,6 +164,9 @@ namespace Task_4
                 // Create new robot.
                 Robot rob = new Robot();
 
+                // Сначала надо было создать многоадресный делегат Steps steps;
+                // Потом добавлять через += методы передвижения, которые были введены польлзователем.
+
                 // Avaible moves for robot.
                 Steps[] robotMoves = { rob.Right, rob.Left, rob.Forward, rob.Backward };
 
