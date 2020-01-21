@@ -47,7 +47,7 @@ namespace Task_1
             {
                 Console.Clear();
 
-                // Set method in delegate.
+                //Set method in delegate.
                 MyDel findMax = TestClass.TestMethod;
 
                 // First number.

@@ -98,14 +98,22 @@ namespace Task_4
         /// </summary>
         /// <param name="letter"> Letter </param>
         /// <returns> Index </returns>
-        private static int GetIndex(char letter) =>
-            letter switch
+        private static int GetIndex(char letter)
+        {
+            switch (letter)
             {
-                'R' => 0,
-                'L' => 1,
-                'F' => 2,
-                'B' => 3,
-            };
+                case 'R':
+                    return 0;
+                case 'L':
+                    return 1;
+                case 'F':
+                    return 2;
+                case 'B':
+                    return 3;
+            }
+
+            return 0;
+        }
 
         /// <summary>
         /// Get trace.
