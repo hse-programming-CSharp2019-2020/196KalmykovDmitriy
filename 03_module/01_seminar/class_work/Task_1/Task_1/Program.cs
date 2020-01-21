@@ -9,6 +9,9 @@ namespace Task_1
     {
         static void Main(string[] args)
         {
+            // В самом начале создали второй: Cast cast2 = <Один из методов>
+            // Для анонимного заменили бы Cast cast1 = delegate(int val){КОД};
+            
             double[] numbersForTest = { 2.3, 0.02, 123, 25 };
 
             // Lambda expression to calculate the order of a number.
