@@ -5,7 +5,7 @@ namespace Task_4
     class Program
     {
         // Как альтернатива, первые 2 сортировки можно было бы расписать в 3 случая,
-        // но удобней использовать CompareTo
+        // но удобней использовать CompareTo.
         /// <summary>
         /// Method for sort.
         /// </summary>
