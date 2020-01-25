@@ -11,14 +11,14 @@ namespace Task_6
         private static readonly Random rnd = new Random();
 
         #region Consts for plants.
-        private const int minGrowth = 25;
-        private const int maxGrowth = 100;
+        private const int MinGrowth = 25;
+        private const int MaxGrowth = 100;
 
-        private const int minPhotosensitivity = 0;
-        private const int maxPhotosensitivity = 100;
+        private const int MinPhotosensitivity = 0;
+        private const int MaxPhotosensitivity = 100;
 
-        private const int minFrostresistance = 0;
-        private const int maxFrostresistance = 80;
+        private const int MinFrostresistance = 0;
+        private const int MaxFrostresistance = 80;
         #endregion
 
         private static void PrintMessage(string message, ConsoleColor color = ConsoleColor.Cyan)
@@ -90,9 +90,9 @@ namespace Task_6
 
                 for (int i = 0; i < n; i++)
                 {
-                    var growth = rnd.Next(maxGrowth - minGrowth + 1);
-                    var photosensitivity = rnd.Next(maxPhotosensitivity - minPhotosensitivity + 1);
-                    var frostresistance = rnd.Next(maxFrostresistance - minFrostresistance + 1);
+                    var growth = rnd.Next(MaxGrowth - MinGrowth + 1);
+                    var photosensitivity = rnd.Next(MaxPhotosensitivity - MinPhotosensitivity + 1);
+                    var frostresistance = rnd.Next(MaxFrostresistance - MinFrostresistance + 1);
 
                     plantArr[i] = new Plant(growth, photosensitivity, frostresistance);
                 }
@@ -140,8 +140,8 @@ namespace Task_6
                         new Plant
                             (el.Growth, el.Photosensitivity, el.Frostresistance / 2));
 
-                PrintInfoAboutPlants(plantArr, "\nИнформация о всех растениях, "+
-                                               "после изменения морозоустойчивости\n");
+                PrintInfoAboutPlants(plantArr, "\nИнформация о всех растениях, " +
+                                               "после изменения морозоустойчивости:\n");
 
                 PrintMessage("Press ESC for exit, press any other key for repeat solution",
                     ConsoleColor.Green);
