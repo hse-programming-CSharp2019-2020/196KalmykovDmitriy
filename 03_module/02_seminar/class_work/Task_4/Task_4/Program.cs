@@ -1,66 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_4
 {
     class Program
     {
+        // Как альтернатива, первые 2 сортировки можно было бы расписать в 3 случая,
+        // но удобней использовать CompareTo
         /// <summary>
-        /// По возрастанию.
+        /// Method for sort.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+        /// <param name="x"> First value in couple </param>
+        /// <param name="y"> Second value in couple </param>
+        /// <returns> 1, 0, or -1 </returns>
         private static int AscendingSort(int x, int y) =>
              x.CompareTo(y);
 
+        /// <summary>
+        /// Method for sort.
+        /// </summary>
+        /// <param name="x"> First value in couple </param>
+        /// <param name="y"> Second value in couple </param>
+        /// <returns> 1, 0, or -1 </returns>
         private static int DescendingSort(int x, int y) =>
             y.CompareTo(x);
 
         /// <summary>
-        /// По чётности
+        /// Method for sort.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+        /// <param name="x"> First value in couple </param>
+        /// <param name="y"> Second value in couple </param>
+        /// <returns> 1, 0, or -1 </returns>
         private static int ParitySort(int x, int y)
         {
-            if (x % 2 == 0 && y % 2 == 1)
-                return 1;
-
-            if (x % 2 == 0 && y % 2 == 0)
-                return 0;
-
-            return -1;
-        }
-
-        private static int OddSort(int x, int y)
-        {
+            // Swap.
             if (x % 2 == 1 && y % 2 == 0)
                 return 1;
 
-            if (x % 2 == 1 && y % 2 == 1)
+            if (x % 2 == y % 2)
                 return 0;
 
             return -1;
         }
 
+        /// <summary>
+        /// Method for sort.
+        /// </summary>
+        /// <param name="x"> First value in couple </param>
+        /// <param name="y"> Second value in couple </param>
+        /// <returns> 1, 0, or -1 </returns>
+        private static int OddSort(int x, int y)
+        {
+            // Swap.
+            if (x % 2 == 0 && y % 2 == 1)
+                return 1;
+
+            if (x % 2 == y % 2)
+                return 0;
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Print array.
+        /// </summary>
+        /// <param name="series"> Series </param>
         private static void PrintArray(Series series)
         {
+            // Set text color.
             Console.ForegroundColor = ConsoleColor.Yellow;
-            foreach (var item in series.arrInts)
+            foreach (var item in series.intsArr)
                 Console.Write(item + " ");
 
             Console.ResetColor();
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Print color message.
+        /// </summary>
+        /// <param name="message"> Message </param>
+        /// <param name="color"> Message's color </param>
         private static void PrintMessage(string message, ConsoleColor color = ConsoleColor.Cyan)
         {
             Console.ForegroundColor = color;
@@ -68,8 +87,13 @@ namespace Task_4
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Print sorted arrays.
+        /// </summary>
+        /// <param name="series"> Series </param>
         private static void PrintSortedArrays(Series series)
         {
+            // Types of sorting.
             Comparison<int>[] typesOfSort =
             {
                 AscendingSort,
@@ -78,14 +102,16 @@ namespace Task_4
                 OddSort
             };
 
+            // Help messages.
             string[] messages =
             {
-                "Отсортированный по возрастанию: ",
-                "Отсортированный по убыванию: ",
-                "Отсортированный по чётности: ",
-                "Отсортированный по нечётности: "
+                "Sorted in increasing order: ",
+                "Sorted in decreasing order: ",
+                "Sorted by parity: ",
+                "Sorted by oddness: "
             };
 
+            // Print info.
             for (int i = 0; i < 4; i++)
             {
                 PrintMessage(messages[i]);
@@ -96,14 +122,17 @@ namespace Task_4
 
         static void Main(string[] args)
         {
-            var series = new Series { arrInts = new[] { 5, 3, 1, 42, 21, 6, 8, 42, 27, 13 } };
+            var series = new Series { intsArr = new[] { 5, 3, 1, 42, 21, 6, 8, 42, 27, 13 } };
 
-            PrintMessage("Исходный массив: ");
+            // Print info about array.
+            PrintMessage("Initial array: ");
             PrintArray(series);
             Console.WriteLine();
 
             PrintSortedArrays(series);
 
+            PrintMessage("\nPress ESC for exit", ConsoleColor.Green);
+            while (Console.ReadKey().Key != ConsoleKey.Escape) ;
         }
     }
 }

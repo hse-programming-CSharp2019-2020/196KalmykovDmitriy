@@ -1,16 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_4
 {
+    /// <summary>
+    /// Class series.
+    /// </summary>
     internal class Series
     {
-        internal int[] arrInts;
+        // Array from int numbers.
+        internal int[] intsArr;
 
-        internal void Order(Comparison<int> cond)=>
-            Array.Sort(arrInts, cond);
+        /// <summary>
+        /// Callback method.
+        /// </summary>
+        /// <param name="cond"> Condition </param>
+        internal void Order(Comparison<int> cond) =>
+            Array.Sort(intsArr, cond);
     }
 }
