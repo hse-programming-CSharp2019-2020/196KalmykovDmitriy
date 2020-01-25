@@ -1,53 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MyLib;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MyLib;
 
 namespace Task_1
 {
     class Program
     {
+        // Как вариант, могли создать новую строку и проходя циклом for по старой
+        // добавлять в новую все 'не цифры'.
+        /// <summary>
+        /// Delete digits from string.
+        /// </summary>
+        /// <param name="str"> Input string </param>
+        /// <returns> String without digits </returns>
         public static string RemoveDigits(string str) =>
             new string(str.Where(el => !char.IsDigit(el)).ToArray());
 
+        // Как вариант, могли создать новую строку и проходя циклом for по старой
+        // добавлять в новую все 'не пробелы'.
+        /// <summary>
+        /// Delete spaces from string.
+        /// </summary>
+        /// <param name="str"> Input string </param>
+        /// <returns> String without spaces</returns>
         public static string RemoveSpaces(string str) =>
             new string(str.Where(el => el != ' ').ToArray());
 
+        /// <summary>
+        /// Print color message.
+        /// </summary>
+        /// <param name="message"> Message </param>
+        /// <param name="color"> Message's color </param>
+        private static void PrintMessage(string message, ConsoleColor color = ConsoleColor.Cyan)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(message);
+            Console.ResetColor();
+        }
+
+        /// <summary>
+        /// Print color strings.
+        /// </summary>
+        /// <param name="message"> Message before string </param>
+        /// <param name="conv"> Converter </param>
+        /// <param name="cr"> Convert rule </param>
+        private static void PrintStrings(string message, string[] stringsForTest,
+            Converter conv = null, ConvertRule cr = null)
+        {
+            // Print color strings.
+            Array.ForEach(stringsForTest,
+                str =>
+                {
+                    PrintMessage(message);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(conv is null ? str : conv.Convert(str, cr));
+                });
+            Console.ResetColor();
+
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
-            ConvertRule crBoth,
-                crMethod2 = RemoveSpaces,
-                crMethod1 = RemoveDigits;
+            string[] stringsForTest =
+                { "as2 d 3q2w2 ass ", "a    s2d ", "12qwd vwwqe2 cw3d " };
+
+            // Initializate delegates.
+            ConvertRule crMethod1 = RemoveSpaces,
+                crMethod2 = RemoveDigits;
 
             var conv = new Converter();
 
-            string[] stringsForTest = { "as2 d 3q2w2 ass ", "a    s2d ", "12qwd vwwqe2 cw3d " };
+            // Print initial strings.
+            PrintStrings("Initial string: ", stringsForTest);
 
-            Array.ForEach(stringsForTest,
-                el => Console.WriteLine($"Исходная строка: {el}"));
+            // Print strings without spaces.
+            PrintStrings("String without spaces: ", stringsForTest, conv, crMethod1);
 
-            Console.WriteLine();
+            // Print strings without digits.
+            PrintStrings("String without digits: ", stringsForTest, conv, crMethod2);
 
-            foreach (var el in stringsForTest)
-                Console.WriteLine("Строка после удаления цифр: " +
-                                  conv.Convert(el, crMethod1));
+            // Initializate multicast delegate.
+            ConvertRule crBoth = crMethod1 + crMethod2;
 
-            Console.WriteLine();
+            // Test multicast delegate.
+            PrintStrings("Test multicast delegate: ", stringsForTest, conv, crBoth);
 
-            foreach (var el in stringsForTest)
-                Console.WriteLine("Строка после удаления пробелов: " +
-                                  conv.Convert(el, crMethod2));
-
-            crBoth = crMethod1 + crMethod2;
-
-            Console.WriteLine();
-
-            foreach (var el in stringsForTest)
-                Console.WriteLine(conv.Convert(el, crBoth));
-
-            Console.ReadLine();
+            PrintMessage("Press ESC for exit", ConsoleColor.Green);
+            while (Console.ReadKey().Key != ConsoleKey.Escape) ;
         }
     }
 }

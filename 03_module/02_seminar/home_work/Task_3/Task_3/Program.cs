@@ -47,7 +47,10 @@ namespace Task_3
 
                 var A = GetDoubleArr();
 
-                var B = Array.ConvertAll(A, delegate (double el) { return el >= 0 ? (int)el : 0; });
+                var B = Array.ConvertAll(A, delegate(double el)
+                {
+                    return el >= 0 ? (int)el : 0;
+                });
 
                 PrintMessage("Массив А: ");
                 Array.ForEach(A, el => Console.Write($"{el:0.##} "));
