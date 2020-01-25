@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Task_1
 {
-    class Program
+    internal class Program
     {
         // Как вариант, могли создать новую строку и проходя циклом for по старой
         // добавлять в новую все 'не цифры'.
@@ -42,6 +42,7 @@ namespace Task_1
         /// Print color strings.
         /// </summary>
         /// <param name="message"> Message before string </param>
+        /// <param name="stringsForTest"> String for test </param>
         /// <param name="conv"> Converter </param>
         /// <param name="cr"> Convert rule </param>
         private static void PrintStrings(string message, string[] stringsForTest,
@@ -60,34 +61,47 @@ namespace Task_1
             Console.WriteLine();
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             string[] stringsForTest =
                 { "as2 d 3q2w2 ass ", "a    s2d ", "12qwd vwwqe2 cw3d " };
 
-            // Initializate delegates.
+            // Initialization delegates.
             ConvertRule crMethod1 = RemoveSpaces,
                 crMethod2 = RemoveDigits;
 
+            // Initialization multicast delegate.
+            var crBoth = crMethod1 + crMethod2;
+
             var conv = new Converter();
 
-            // Print initial strings.
-            PrintStrings("Initial string: ", stringsForTest);
+            try
+            {
+                // Print initial strings.
+                PrintStrings("Initial string: ", stringsForTest);
 
-            // Print strings without spaces.
-            PrintStrings("String without spaces: ", stringsForTest, conv, crMethod1);
+                // Print strings without spaces.
+                PrintStrings("String without spaces: ", stringsForTest, conv, crMethod1);
 
-            // Print strings without digits.
-            PrintStrings("String without digits: ", stringsForTest, conv, crMethod2);
+                // Print strings without digits.
+                PrintStrings("String without digits: ", stringsForTest, conv, crMethod2);
 
-            // Initializate multicast delegate.
-            ConvertRule crBoth = crMethod1 + crMethod2;
-
-            // Test multicast delegate.
-            PrintStrings("Test multicast delegate: ", stringsForTest, conv, crBoth);
+                // Test multicast delegate.
+                PrintStrings("Test multicast delegate: ", stringsForTest, conv, crBoth);
+            }
+            catch (ArgumentNullException ex)
+            {
+                PrintMessage(ex.Message, ConsoleColor.Red);
+                PrintMessage("\nPress ESC for exit", ConsoleColor.Green);
+                while (Console.ReadKey().Key != ConsoleKey.Escape)
+                {
+                }
+            }
 
             PrintMessage("Press ESC for exit", ConsoleColor.Green);
-            while (Console.ReadKey().Key != ConsoleKey.Escape) ;
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 namespace Task_3
 {
-    class Program
+    internal class Program
     {
         #region Consts for bisection method.
         private const double EpsX = 0.01;
@@ -47,7 +47,7 @@ namespace Task_3
                               $" on the segment [{Left}, {Right}]:" + Environment.NewLine);
 
             // Types of functions.
-            function[] funcsArr =
+            Function[] funcsArr =
             {
                 Math.Sin,
                 SinX,
@@ -65,7 +65,7 @@ namespace Task_3
             };
 
             // Test.
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
                 PrintMessage(messages[i]);
                 PrintMessage($"x = {NumMeth.Bisec(Left, Right, EpsX, EpsY, funcsArr[i])}\n",
@@ -117,22 +117,35 @@ namespace Task_3
             }
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             // Attempt to apply bisection method.
             try
             {
                 TestBisec();
+                TestOptimum();
             }
             catch (IndexOutOfRangeException ex)
             {
                 PrintMessage(ex.Message, ConsoleColor.Red);
+                PrintMessage("\n\nPress ESC for exit", ConsoleColor.Green);
+                while (Console.ReadKey().Key != ConsoleKey.Escape)
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                PrintMessage(ex.Message, ConsoleColor.Red);
+                PrintMessage("\n\nPress ESC for exit", ConsoleColor.Green);
+                while (Console.ReadKey().Key != ConsoleKey.Escape)
+                {
+                }
             }
 
-            TestOptimum();
-
             PrintMessage("\nPress ESC for exit", ConsoleColor.Green);
-            while (Console.ReadKey().Key != ConsoleKey.Escape) ;
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace Numerical
 {
     // Declare delegat.
-    public delegate double function(double x);
+    public delegate double Function(double x);
 
     // Declare delegat.
     public delegate double Functional_1(double x);
@@ -25,9 +25,12 @@ namespace Numerical
         public static double Optimum_1(Functional_1 fun, double left, double right,
                double delta, double epsilon)
         {
+            if (fun is null || right < left || delta < 0 || epsilon < 0)
+                throw new Exception("Error passing parameters");
+
             // Declare require variable.
-            double rOne = (Math.Sqrt(5) - 1) / 2.0;
-            double rTwo = rOne * rOne;
+            var rOne = (Math.Sqrt(5) - 1) / 2.0;
+            var rTwo = rOne * rOne;
             double yLeft, yRight;
             double h;
 
@@ -75,8 +78,11 @@ namespace Numerical
         /// <param name="f"> Function </param>
         /// <returns> Root of function on the interval </returns>
         public static double Bisec(double left, double right,
-            double epsX, double epsY, function f)
+            double epsX, double epsY, Function f)
         {
+            if (epsX < 0 || epsY < 0 || f is null || right < left)
+                throw new Exception("error passing parameters");
+
             var x = left;
             var y = f(x);
 

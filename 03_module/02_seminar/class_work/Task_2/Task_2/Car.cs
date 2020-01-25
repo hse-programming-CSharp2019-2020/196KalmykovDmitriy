@@ -3,33 +3,38 @@
 namespace Task_2
 {
     // Declare delegate.
-    public delegate void CarEngineHandler(string msgForCaller);
+    internal delegate void CarEngineHandler(string msgForCaller);
 
     /// <summary>
     /// Class car.
     /// </summary>
-    class Car
+    internal class Car
     {
         private CarEngineHandler listOfHandlers;
 
         // Info about car.
         internal int CurrentSpeed { get; private set; }
-        internal int MaxSpeed { get; }
-        internal string PetName { get; }
+        private int MaxSpeed { get; }
+        private string PetName { get; }
 
         // Car's condition.
         private bool carIsDead;
 
         // Default constructor.
-        public Car() =>
+        internal Car() =>
             MaxSpeed = 100;
 
         // Constructor.
-        public Car(string name, int maxSp, int curSp) =>
+        internal Car(string name, int maxSp, int curSp)
+        {
+            if (name is null || maxSp < 0 || curSp < 0)
+                throw new ArgumentOutOfRangeException("Speed must be positive");
+
             (PetName, MaxSpeed, CurrentSpeed) = (name, maxSp, curSp);
+        }
 
         // Set method for notifications.
-        public void RegisterWithCarEngine(CarEngineHandler methodToCall) =>
+        internal void RegisterWithCarEngine(CarEngineHandler methodToCall) =>
             listOfHandlers = methodToCall;
 
         /// <summary>
@@ -38,6 +43,9 @@ namespace Task_2
         /// <param name="delta"> Figure for change speed </param>
         public void Accelerate(int delta)
         {
+            if (delta < 0)
+                throw new ArgumentOutOfRangeException("Delta must be positive");
+
             if (carIsDead)
                 listOfHandlers?.Invoke("К сожалению, машина сломана :( ...");
             else

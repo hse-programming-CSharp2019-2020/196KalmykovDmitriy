@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Linq;
 
 namespace Task_5
 {
 
     namespace Task_5
     {
-        class Program
+        internal class Program
         {
-            private const int sizeArr = 5;
+            private const int SizeArr = 5;
 
             /// <summary>
             /// Method for get number.
@@ -62,7 +61,7 @@ namespace Task_5
                 Console.ResetColor();
             }
 
-            static void Main(string[] args)
+            private static void Main()
             {
                 do
                 {
@@ -70,15 +69,15 @@ namespace Task_5
 
                     double maxAbsoluteValueInArr = 0;
 
-                    var arr = new double[sizeArr];
+                    var arr = new double[SizeArr];
 
                     PrintMessage("Fill the array with real numbers from 5 elements:\n");
 
                     // Fill array.
-                    for (int i = 0; i < sizeArr; i++)
+                    for (var i = 0; i < SizeArr; i++)
                         arr[i] = GetNumber<double>($"arr[{i}] = ");
 
-                    PrintMessage("\nВведённый массив: ");
+                    PrintMessage("\nEntered array: ");
                     PrintArray(arr);
                     Console.WriteLine();
 
@@ -93,7 +92,7 @@ namespace Task_5
                     });
 
                     // Check special case.
-                    if (maxAbsoluteValueInArr == 0)
+                    if (Math.Abs(maxAbsoluteValueInArr) < double.Epsilon)
                     {
                         PrintMessage("Max element of array = 0, " +
                                      "normalize impossible! \n", ConsoleColor.Red);
@@ -102,7 +101,7 @@ namespace Task_5
                         continue;
                     }
 
-                    // Как вариант, это можно было написать через Linq: arr.Select(el=>el/max);
+                    // Как вариант, это можно было написать через Linq: arr.Select(el=>el/max).ToArray();
                     // Normalize array.
                     arr = Array.ConvertAll(arr, el => el / maxAbsoluteValueInArr);
 

@@ -2,7 +2,7 @@
 
 namespace Task_4
 {
-    class Program
+    internal class Program
     {
         // Как альтернатива, первые 2 сортировки можно было бы расписать в 3 случая,
         // но удобней использовать CompareTo.
@@ -31,16 +31,7 @@ namespace Task_4
         /// <param name="y"> Second value in couple </param>
         /// <returns> 1, 0, or -1 </returns>
         private static int ParitySort(int x, int y)
-        {
-            // Swap.
-            if (x % 2 == 1 && y % 2 == 0)
-                return 1;
-
-            if (x % 2 == y % 2)
-                return 0;
-
-            return -1;
-        }
+            => (x % 2).CompareTo(y % 2);
 
         /// <summary>
         /// Method for sort.
@@ -48,17 +39,8 @@ namespace Task_4
         /// <param name="x"> First value in couple </param>
         /// <param name="y"> Second value in couple </param>
         /// <returns> 1, 0, or -1 </returns>
-        private static int OddSort(int x, int y)
-        {
-            // Swap.
-            if (x % 2 == 0 && y % 2 == 1)
-                return 1;
-
-            if (x % 2 == y % 2)
-                return 0;
-
-            return -1;
-        }
+        private static int OddSort(int x, int y) =>
+            (y % 2).CompareTo(x % 2);
 
         /// <summary>
         /// Print array.
@@ -112,7 +94,7 @@ namespace Task_4
             };
 
             // Print info.
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
                 PrintMessage(messages[i]);
                 series.Order(typesOfSort[i]);
@@ -120,7 +102,7 @@ namespace Task_4
             }
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             var series = new Series { intsArr = new[] { 5, 3, 1, 42, 21, 6, 8, 42, 27, 13 } };
 
@@ -129,10 +111,23 @@ namespace Task_4
             PrintArray(series);
             Console.WriteLine();
 
-            PrintSortedArrays(series);
+            try
+            {
+                PrintSortedArrays(series);
+            }
+            catch (ArgumentNullException ex)
+            {
+                PrintMessage(ex.Message, ConsoleColor.Red);
+                PrintMessage("\n\nPress ESC for exit", ConsoleColor.Green);
+                while (Console.ReadKey().Key != ConsoleKey.Escape)
+                {
+                }
+            }
 
             PrintMessage("\nPress ESC for exit", ConsoleColor.Green);
-            while (Console.ReadKey().Key != ConsoleKey.Escape) ;
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
         }
     }
 }

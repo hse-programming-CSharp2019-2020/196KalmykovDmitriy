@@ -2,7 +2,7 @@
 
 namespace Task_2
 {
-    class Program
+    internal class Program
     {
         /// <summary>
         /// Method for print notification.
@@ -26,25 +26,39 @@ namespace Task_2
             Console.ResetColor();
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             // Print caption.
             PrintMessage("***** Использование делегатов для управления событиями *****\n",
                 ConsoleColor.Yellow);
 
-            // Create new car.
-            var c1 = new Car("SlugBug", 100, 10);
+            try
+            {
+                // Create new car.
+                var c1 = new Car("SlugBug", 100, 10);
 
-            // Method for notifications.
-            c1.RegisterWithCarEngine(OnCarEngineEvent);
-            
-            // Increase speed.
-            Console.WriteLine("***** Увеличиваем скорость *****");
-            for (int i = 0; i < 6; i++)
-                c1.Accelerate(20);
+                // Method for notifications.
+                c1.RegisterWithCarEngine(OnCarEngineEvent);
+
+                // Increase speed.
+                Console.WriteLine("***** Увеличиваем скорость *****");
+                for (int i = 0; i < 6; i++)
+                    c1.Accelerate(20);
+
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                PrintMessage(ex.Message, ConsoleColor.Red);
+                PrintMessage("\n\nPress ESC for exit", ConsoleColor.Green);
+                while (Console.ReadKey().Key != ConsoleKey.Escape)
+                {
+                }
+            }
 
             PrintMessage("\nPress ESC for exit", ConsoleColor.Green);
-            while (Console.ReadKey().Key != ConsoleKey.Escape) ;
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
         }
     }
 }
