@@ -30,8 +30,8 @@ namespace Task_4
         /// <param name="x"> First value in couple </param>
         /// <param name="y"> Second value in couple </param>
         /// <returns> 1, 0, or -1 </returns>
-        private static int ParitySort(int x, int y)
-            => (x % 2).CompareTo(y % 2);
+        private static int ParitySort(int x, int y) =>
+            (x % 2).CompareTo(y % 2);
 
         /// <summary>
         /// Method for sort.
