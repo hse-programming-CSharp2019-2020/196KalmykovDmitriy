@@ -10,28 +10,26 @@ namespace Task_3
 {
     class Program
     {
-        private static readonly Random rnd = new Random();
+        private static readonly Random Rnd = new Random();
         private const int SizeArr = 10;
+
+        #region Consts for random.
         private const int MinValue = -3;
         private const int MaxValue = 3;
+        #endregion
 
+        /// <summary>
+        /// Get double number from interval.
+        /// </summary>
+        /// <returns> Double number from interval </returns>
         private static double GetDoubleFromInterval() =>
-            MinValue + double.Epsilon + rnd.NextDouble() * (MaxValue - MinValue - double.Epsilon);
+            MinValue + double.Epsilon + Rnd.NextDouble() * (MaxValue - MinValue - double.Epsilon);
 
-
-
-
-        private static double[] GetDoubleArr()
-        {
-            var tempArr = new double[SizeArr];
-
-            for (int i = 0; i < SizeArr; i++)
-                tempArr[i] = GetDoubleFromInterval();
-
-            return tempArr;
-
-        }
-
+        /// <summary>
+        /// Print color message.
+        /// </summary>
+        /// <param name="message"> Message </param>
+        /// <param name="color"> Message's color </param>
         private static void PrintMessage(string message, ConsoleColor color = ConsoleColor.Cyan)
         {
             Console.ForegroundColor = color;
@@ -45,9 +43,12 @@ namespace Task_3
             {
                 Console.Clear();
 
-                var A = GetDoubleArr();
+                
+                // Create A.
+                var A = new double[SizeArr].Select(el => GetDoubleFromInterval()).ToArray();
 
-                var B = Array.ConvertAll(A, delegate(double el)
+                // Create B.
+                var B = Array.ConvertAll(A, delegate (double el)
                 {
                     return el >= 0 ? (int)el : 0;
                 });

@@ -42,7 +42,7 @@ namespace Task_2
 
                 // Increase speed.
                 Console.WriteLine("***** Увеличиваем скорость *****");
-                for (int i = 0; i < 6; i++)
+                for (var i = 0; i < 6; i++)
                     c1.Accelerate(20);
 
             }

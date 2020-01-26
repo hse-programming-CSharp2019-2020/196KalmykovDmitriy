@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_2
 {
-    class Program
+    internal class Program
     {
-        private static readonly Random rnd = new Random();
+        #region Consts for random.
+        private const int Min = 0;
+        private const int Max = 20;
+        #endregion
 
-        private static int[] GetArr()
-        {
-            var tempArr = new int[10];
+        private const int SizeArr = 10;
+        private static readonly Random Rnd = new Random();
 
-            for (int i = 0; i < 10; i++)
-                tempArr[i] = rnd.Next(21);
 
-            return tempArr;
-        }
-
+        /// <summary>
+        /// Print color message.
+        /// </summary>
+        /// <param name="message"> Message </param>
+        /// <param name="color"> Message's color </param>
         private static void PrintMessage(string message, ConsoleColor color = ConsoleColor.Cyan)
         {
             Console.ForegroundColor = color;
@@ -27,38 +26,45 @@ namespace Task_2
             Console.ResetColor();
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             do
             {
                 Console.Clear();
 
-                var A = GetArr();
+                // Как альтернатива, можно было написать отдельный метод,
+                // в котором формировался массив с помощью цикла for.
+                // Create array.
+                var A = new int[SizeArr].Select(el => Rnd.Next(Min + 1, Max)).ToArray();
 
-                PrintMessage("Первый массив: ");
+                // Print A.
+                PrintMessage("First array: ");
                 foreach (var item in A)
                     Console.Write(item + " ");
 
                 Console.WriteLine();
 
+                // Check A for 0.
                 if (A.Any(el => el == 0))
                 {
-                    PrintMessage("Невозможно вычислить 1 / 0\n", ConsoleColor.Red);
+                    PrintMessage("Impossible to calculate 1 / 0\n", ConsoleColor.Red);
                     PrintMessage("Press ESC for exit, " +
                                  "press any other key for repeat solution", ConsoleColor.Green);
 
                     continue;
                 }
 
+                // Create array.
                 var B = Array.ConvertAll(A, x => 1.0 / x);
 
-                PrintMessage("Второй массив: ");
+                // Print B.
+                PrintMessage("Second Array: ");
                 foreach (var item in B)
                     Console.Write($"{item:0.##} ");
 
                 Console.WriteLine();
 
-                PrintMessage("Press ESC for exit, " +
+                PrintMessage("\nPress ESC for exit, " +
                                   "press any other key for repeat solution", ConsoleColor.Green);
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
         }

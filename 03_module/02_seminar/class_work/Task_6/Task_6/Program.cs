@@ -150,17 +150,7 @@ namespace Task_6
                     "sorted by growth in descending order:\n");
 
                 // Sorted array by ascending of frostresistance.
-                Array.Sort(plantArr, (x, y) =>
-                {
-                    // Swap.
-                    if (x.Frostresistance > y.Frostresistance)
-                        return 1;
-
-                    if (x.Frostresistance == y.Frostresistance)
-                        return 0;
-
-                    return -1;
-                });
+                Array.Sort(plantArr, (x, y) => (x.Frostresistance.CompareTo(y.Frostresistance)));
 
                 PrintInfoAboutPlants(plantArr, "\nInfo about all plants, " +
                     "sorted by frostresistance in ascending order:\n");
