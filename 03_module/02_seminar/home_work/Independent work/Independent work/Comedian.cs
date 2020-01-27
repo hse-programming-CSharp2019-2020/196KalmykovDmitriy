@@ -31,19 +31,17 @@ namespace Independent_work
         private static bool NameIsWrong(string name)
         {
             // Check for null.
-            if (name is null)
+            if (name is null || name == string.Empty)
                 return true;
 
-            var stringBuilder = new StringBuilder(name);
-
             // Check first letter.
-            if (!char.IsUpper(stringBuilder[0]))
+            if (!char.IsUpper(name[0]))
                 return true;
 
             // Delete first letter, so we can check other.
-            stringBuilder.Remove(0, 1);
+            name = name.Remove(0, 1);
 
-            return !stringBuilder.ToString().All(char.IsLower);
+            return !name.All(char.IsLower);
         }
 
         /// <summary>
