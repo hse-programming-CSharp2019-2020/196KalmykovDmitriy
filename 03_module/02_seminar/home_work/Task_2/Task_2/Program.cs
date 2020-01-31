@@ -44,16 +44,6 @@ namespace Task_2
 
                 Console.WriteLine();
 
-                // Check A for 0.
-                if (A.Any(el => el == 0))
-                {
-                    PrintMessage("Impossible to calculate 1 / 0\n", ConsoleColor.Red);
-                    PrintMessage("Press ESC for exit, " +
-                                 "press any other key for repeat solution", ConsoleColor.Green);
-
-                    continue;
-                }
-
                 // Create array.
                 var B = Array.ConvertAll(A, x => 1.0 / x);
 
@@ -68,6 +58,5 @@ namespace Task_2
                                   "press any other key for repeat solution", ConsoleColor.Green);
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
         }
-
     }
 }

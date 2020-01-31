@@ -61,52 +61,77 @@ namespace Task_5
                 Console.ResetColor();
             }
 
+            /// <summary>
+            /// Find max absolute value in array.
+            /// </summary>
+            /// <param name="numbers"> Array </param>
+            /// <returns> Max absolute value </returns>
+            private static double GetMax(double[] numbers)
+            {
+                double maxAbsoluteValueInArr = 0;
+
+                Array.ForEach(numbers, el =>
+                {
+                    if (Math.Abs(el) > Math.Abs(maxAbsoluteValueInArr))
+                        maxAbsoluteValueInArr = el;
+                });
+
+                return maxAbsoluteValueInArr;
+            }
+
+            /// <summary>
+            /// Check number for zero.
+            /// </summary>
+            /// <param name="maxAbsoluteValueInArr"> Max </param>
+            /// <returns> True or false </returns>
+            private static bool MaximumIsZero(double maxAbsoluteValueInArr)
+            {
+                if (!(Math.Abs(maxAbsoluteValueInArr) < double.Epsilon)) 
+                    return false;
+
+                PrintMessage("Max element of array = 0, " +
+                             "normalize impossible! \n", ConsoleColor.Red);
+                PrintMessage("\nPress ESC for exit, " +
+                             "for repeat solution - any other key", ConsoleColor.Green);
+
+                return true;
+
+            }
+
             private static void Main()
             {
                 do
                 {
                     Console.Clear();
 
-                    double maxAbsoluteValueInArr = 0;
-
-                    var arr = new double[SizeArr];
+                    // Number's array.
+                    var numbers = new double[SizeArr];
 
                     PrintMessage("Fill the array with real numbers from 5 elements:\n");
 
                     // Fill array.
                     for (var i = 0; i < SizeArr; i++)
-                        arr[i] = GetNumber<double>($"arr[{i}] = ");
+                        numbers[i] = GetNumber<double>($"arr[{i}] = ");
 
-                    PrintMessage("\nEntered array: ");
-                    PrintArray(arr);
-                    Console.WriteLine();
-
-
-                    // Find max.
+                    // Max absolute value in array.
                     // If there are several maximums,
                     // then the first one is selected from the beginning array.
-                    Array.ForEach(arr, el =>
-                    {
-                        if (Math.Abs(el) > Math.Abs(maxAbsoluteValueInArr))
-                            maxAbsoluteValueInArr = el;
-                    });
+                    var maxAbsoluteValueInArr = GetMax(numbers);
+
+                    PrintMessage("\nEntered array: ");
+                    PrintArray(numbers);
+                    Console.WriteLine();
 
                     // Check special case.
-                    if (Math.Abs(maxAbsoluteValueInArr) < double.Epsilon)
-                    {
-                        PrintMessage("Max element of array = 0, " +
-                                     "normalize impossible! \n", ConsoleColor.Red);
-                        PrintMessage("\nPress ESC for exit, " +
-                                          "for repeat solution - any other key", ConsoleColor.Green);
+                    if (MaximumIsZero(maxAbsoluteValueInArr))
                         continue;
-                    }
 
                     // Как вариант, это можно было написать через Linq: arr.Select(el=>el/max).ToArray();
                     // Normalize array.
-                    arr = Array.ConvertAll(arr, el => el / maxAbsoluteValueInArr);
+                    numbers = Array.ConvertAll(numbers, el => el / maxAbsoluteValueInArr);
 
                     PrintMessage("Array after normalize: ");
-                    PrintArray(arr);
+                    PrintArray(numbers);
 
                     PrintMessage("\n\nPress ESC for exit, " +
                         "for repeat solution - any other key", ConsoleColor.Green);

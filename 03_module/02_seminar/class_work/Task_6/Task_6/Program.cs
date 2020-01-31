@@ -89,6 +89,36 @@ namespace Task_6
         private static int ParitySort(Plant x, Plant y) =>
                 (x.Photosensitivity % 2).CompareTo(y.Photosensitivity % 2);
 
+        /// <summary>
+        /// Fill array.
+        /// </summary>
+        /// <param name="n"> Amount of elements </param>
+        /// <returns> Array from plant </returns>
+        private static Plant[] GetPlantArr(int n)
+        {
+            var plantArr = new Plant[n];
+
+            for (var i = 0; i < n; i++)
+            {
+                var growth = Rnd.Next(MaxGrowth - MinGrowth + 1);
+                var photosensitivity = Rnd.Next(MaxPhotosensitivity - MinPhotosensitivity + 1);
+                var frostresistance = Rnd.Next(MaxFrostresistance - MinFrostresistance + 1);
+
+                try
+                {
+                    plantArr[i] = new Plant(growth, photosensitivity, frostresistance);
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    PrintMessage(ex.Message, ConsoleColor.Red);
+
+                    i--;
+                }
+            }
+
+            return plantArr;
+        }
+
         private static void Main()
         {
             do
@@ -102,7 +132,8 @@ namespace Task_6
                 // Attempt to create array from 'n' elements.
                 try
                 {
-                    plantArr = new Plant[n];
+                    // Fill array.
+                    plantArr = GetPlantArr(n);
                 }
                 catch (OutOfMemoryException)
                 {
@@ -111,39 +142,13 @@ namespace Task_6
                         ConsoleColor.Green);
                     continue;
                 }
-                
-                // Fill array.
-                for (var i = 0; i < n; i++)
-                {
-                    var growth = Rnd.Next(MaxGrowth - MinGrowth + 1);
-                    var photosensitivity = Rnd.Next(MaxPhotosensitivity - MinPhotosensitivity + 1);
-                    var frostresistance = Rnd.Next(MaxFrostresistance - MinFrostresistance + 1);
-
-                    try
-                    {
-                        plantArr[i] = new Plant(growth, photosensitivity, frostresistance);
-                    }
-                    catch (ArgumentOutOfRangeException ex)
-                    {
-                        PrintMessage(ex.Message, ConsoleColor.Red);
-
-                        i--;
-                    }
-                }
 
                 PrintInfoAboutPlants(plantArr, "\nInfo about all plants:\n");
 
                 // Sorted array by descending of growth.
                 Array.Sort(plantArr, delegate (Plant x, Plant y)
                 {
-                    // Swap.
-                    if (x.Growth < y.Growth)
-                        return 1;
-
-                    if (x.Growth == y.Growth)
-                        return 0;
-
-                    return -1;
+                    return (y.Growth).CompareTo(x.Growth);
                 });
 
                 PrintInfoAboutPlants(plantArr, "\nInfo about all plants, " +
