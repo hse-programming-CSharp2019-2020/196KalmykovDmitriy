@@ -28,14 +28,16 @@ namespace Task_6
         {
             Program.PrintMessage("Result array: \n");
 
-            // Print array.
-            for (var i = 0; i <= arr.GetUpperBound(0); i++)
+            for (var i = 0; i < arr.GetUpperBound(0); i++)
             {
-                for (var j = 0; j <= arr.GetUpperBound(1); j++)
-                    Console.Write(arr[i, j] + " ");
-                
-                // Raise event.
-                LineComplete?.Invoke();
+                for (var j = 0; j < 3; j++)
+                {
+                    for (var k = 0; k < 5; k++)
+                        Console.Write(arr[i, 5 * j + k] + " ");
+
+                    // Raise event.
+                    LineComplete?.Invoke();
+                }
             }
         }
 
@@ -51,7 +53,7 @@ namespace Task_6
                     arr[i, j] = Rnd.Next(100);
 
                     // Print message and raise event.
-                    Program.PrintMessage($"New item added: {arr[i,j]}\n", ConsoleColor.Magenta);
+                    Program.PrintMessage($"New item added: {arr[i, j]}\n", ConsoleColor.Magenta);
                     NewItemFilled?.Invoke(arr);
                 }
         }
