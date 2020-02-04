@@ -7,6 +7,8 @@ namespace Task_6
         // Counter of filled elements.
         private static int _counter;
 
+        private static int _max;
+
         /// <summary>
         /// Get average of array.
         /// </summary>
@@ -31,19 +33,19 @@ namespace Task_6
         /// </summary>
         /// <param name="arr"> Array </param>
         /// <returns> Max in array </returns>
-        private static int FindMax(int[,] arr)
+        internal static int FindMax(int[,] arr)
         {
-            var max = -1;
+            _max = -1;
 
             // Find max.
             for (var i = 0; i <= arr.GetUpperBound(0); i++)
                 for (var j = 0; j <= arr.GetUpperBound(1); j++)
                 {
-                    if (arr[i, j] > max)
-                        max = arr[i, j];
+                    if (arr[i, j] > _max)
+                       _max = arr[i, j];
                 }
 
-            return max;
+            return _max;
         }
 
         /// <summary>
@@ -72,7 +74,13 @@ namespace Task_6
                     ConsoleColor.Yellow);
 
             Methods.NewItemFilled += array =>
-                PrintMessage($"Max element in array: {FindMax(array)}\n\n", ConsoleColor.Green);
+            {
+                PrintMessage(
+                    _max < FindMax(array)
+                        ? $"Max element in array: {FindMax(array)}\n\n"
+                        : "Maximum doesn't change\n\n",
+                    ConsoleColor.Green);
+            };
         }
 
         private static void Main()
@@ -82,6 +90,7 @@ namespace Task_6
             // Repeat solution.
             do
             {
+                _max = 0;
                 var arr = new int[15, 15];
                 Console.Clear();
 

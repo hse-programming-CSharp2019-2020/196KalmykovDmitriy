@@ -37,6 +37,7 @@ namespace Task_6
                     for (var k = 0; k < 5; k++)
                         Console.Write(arr[i, 5 * j + k] + " ");
 
+
                     // Raise event.
                     LineComplete?.Invoke();
                 }
@@ -56,6 +57,7 @@ namespace Task_6
 
                     // Print message and raise event.
                     Program.PrintMessage($"New item added: {arr[i, j]}\n", ConsoleColor.Magenta);
+
                     NewItemFilled?.Invoke(arr);
                 }
         }
