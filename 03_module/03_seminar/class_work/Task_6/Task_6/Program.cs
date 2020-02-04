@@ -77,21 +77,20 @@ namespace Task_6
 
         private static void Main()
         {
-            var arr = new int[15, 15];
-
             SetMethodsToEvents();
 
             // Repeat solution.
             do
             {
+                var arr = new int[15, 15];
                 Console.Clear();
 
                 Methods.FillArray(arr);
                 Methods.PrintArray(arr);
-                
+
                 PrintMessage("\nPress ESC for exit, press any other key for repeat decision",
                     ConsoleColor.Green);
-            } while (Console.ReadKey().Key!=ConsoleKey.Escape);
+            } while (Console.ReadKey().Key != ConsoleKey.Escape);
         }
     }
 }

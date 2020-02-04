@@ -13,6 +13,8 @@ namespace Task_6
     /// </summary>
     internal class Methods
     {
+        public static int Sum;
+
         // Variable for random.
         private static readonly Random Rnd = new Random();
 
@@ -64,14 +66,14 @@ namespace Task_6
         /// <param name="arr"> Array </param>
         internal static void ArraySumCount(int[,] arr)
         {
-            var sum = 0;
+            Sum = 0;
 
             // Find sum.
             for (var i = 0; i <= arr.GetUpperBound(0); i++)
                 for (var j = 0; j <= arr.GetUpperBound(1); j++)
-                    sum += arr[i, j];
+                    Sum += arr[i, j];
 
-            Program.PrintMessage($"Sum of elements of array: {sum}\n");
+            Program.PrintMessage($"Sum of elements of array: {Sum}\n");
         }
     }
 }
