@@ -1,29 +1,12 @@
 ﻿using System;
 
-namespace Task_3
+namespace Task_4
 {
-    public class ChainLenChangedEventArgs : EventArgs
-    {
-        public double Rad { get; }
-        public ChainLenChangedEventArgs(double r) => Rad = r;
-    }
-
-
-
-
-
-
-
-
-
-
-    // Delegates.
-    internal delegate void ChainLenChanged(double r);
-    internal delegate void ChainNChanged(int amount, double len);
     internal delegate void ChainRChanged(double r);
 
     internal class Program
     {
+
         /// <summary>
         /// Get number.
         /// </summary>
@@ -149,10 +132,8 @@ namespace Task_3
                 var chain = new Chain(length, n);
 
                 // Subscribe methods to events.
-                //chain.OnChainLenChangedEvent += chain.ChangeLen;
-
                 chain.OnChainLenChangedEvent += chain.OnChainLenChangedHandler;
-                chain.ChainNChangedEvent += new Bead(10).ChangeN;
+                chain.OnChainNChangedEvent+= new Bead(10).OnChainLenChangedHandler;
                 chain.ChainRChangedEvent += chain.ChangeR;
 
                 PrintMessage(chain.ToString(), ConsoleColor.Yellow);
