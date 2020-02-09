@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Task_3
 {
@@ -8,17 +7,12 @@ namespace Task_3
     /// </summary>
     internal class Chain
     {
-        public event EventHandler<ChainLenChangedEventArgs> OnChainLenChangedEvent;
-
-        protected virtual void OnChainLenChanged(ChainLenChangedEventArgs e) =>
-            OnChainLenChangedEvent?.Invoke(this, e);
-
-
 
         // Events.
         //internal event ChainLenChanged ChainLenChangedEvent;
         internal event ChainNChanged ChainNChangedEvent;
         internal event ChainRChanged ChainRChangedEvent;
+        internal event ChainLenChanged ChainLenChangedEvent;
 
         // Some variable.
         private int _n;
@@ -34,21 +28,9 @@ namespace Task_3
                 _len = value;
 
                 // Raise event.
-                //OnChainLenChangedEvent?.Invoke(_len / _n);
-
-                OnChainLenChanged(new ChainLenChangedEventArgs(_len / _n));
+                ChainLenChangedEvent?.Invoke(_len / _n);
             }
         }
-
-
-
-        public void OnChainLenChangedHandler(object sender,
-            ChainLenChangedEventArgs e)
-        {
-            foreach (var bead in _beads)
-                bead.R = e.Rad;
-        }
-
 
 
         // Property for amount of beads.
@@ -102,6 +84,7 @@ namespace Task_3
         /// Create list from beads.
         /// </summary>
         /// <param name="r"> Radius of bead </param>
+        /// <param name="amount"> Amount of beads </param>
         internal void CreateBeads(double r, int amount)
         {
             _beads.Clear();

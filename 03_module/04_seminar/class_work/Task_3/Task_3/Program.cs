@@ -2,20 +2,6 @@
 
 namespace Task_3
 {
-    public class ChainLenChangedEventArgs : EventArgs
-    {
-        public double Rad { get; }
-        public ChainLenChangedEventArgs(double r) => Rad = r;
-    }
-
-
-
-
-
-
-
-
-
 
     // Delegates.
     internal delegate void ChainLenChanged(double r);
@@ -149,9 +135,7 @@ namespace Task_3
                 var chain = new Chain(length, n);
 
                 // Subscribe methods to events.
-                //chain.OnChainLenChangedEvent += chain.ChangeLen;
-
-                chain.OnChainLenChangedEvent += chain.OnChainLenChangedHandler;
+                chain.ChainLenChangedEvent += chain.ChangeLen;
                 chain.ChainNChangedEvent += new Bead(10).ChangeN;
                 chain.ChainRChangedEvent += chain.ChangeR;
 
