@@ -2,11 +2,11 @@
 
 namespace Task_4
 {
+    // Delegate.
     internal delegate void ChainRChanged(double r);
 
     internal class Program
     {
-
         /// <summary>
         /// Get number.
         /// </summary>

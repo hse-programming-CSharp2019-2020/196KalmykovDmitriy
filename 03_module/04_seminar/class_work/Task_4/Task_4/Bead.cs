@@ -5,10 +5,6 @@ namespace Task_4
 {
     internal class Bead
     {
-        
-
-        
-
         // radius.
         private double _r;
 
@@ -29,13 +25,10 @@ namespace Task_4
         }
 
         /// <summary>
-        /// Change radius, because of amount of beads has changed.
+        /// Change N.
         /// </summary>
-        /// <param name="amount"> Amount of beads </param>
-        /// <param name="len"> Length of chain </param>
-        internal void ChangeN(int amount, double len) =>
-            _r = len / amount;
-
+        /// <param name="sender"> Sender </param>
+        /// <param name="e"> E </param>
         public void OnChainLenChangedHandler(object sender,
             ChainNChangedEventArgs e) =>
             _r = e.Len / e.N;

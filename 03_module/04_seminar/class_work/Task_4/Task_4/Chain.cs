@@ -6,17 +6,25 @@ namespace Task_4
 {
     internal class Chain
     {
+        // Events.
         public event EventHandler<ChainLenChangedEventArgs> OnChainLenChangedEvent;
         public event EventHandler<ChainNChangedEventArgs> OnChainNChangedEvent;
 
+        /// <summary>
+        /// Raise event.
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnChainNChanged(ChainNChangedEventArgs e) =>
             OnChainNChangedEvent?.Invoke(this, e);
 
-
+        /// <summary>
+        /// Raise event.
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnChainLenChanged(ChainLenChangedEventArgs e) =>
             OnChainLenChangedEvent?.Invoke(this, e);
 
-        // Events.
+        // Event.
         internal event ChainRChanged ChainRChangedEvent;
 
         // Some variable.
@@ -37,6 +45,11 @@ namespace Task_4
             }
         }
 
+        /// <summary>
+        /// Change radius.
+        /// </summary>
+        /// <param name="sender"> Sender </param>
+        /// <param name="e"> E </param>
         public void OnChainLenChangedHandler(object sender,
             ChainLenChangedEventArgs e)
         {
@@ -64,6 +77,10 @@ namespace Task_4
         internal void ChangeR(double r) =>
             _n = (int)(_len / r);
 
+        /// <summary>
+        /// Change radius with event call.
+        /// </summary>
+        /// <param name="r"> Radius </param>
         internal void ChangeRWithEvent(double r)
         {
             foreach (var bead in _beads)
