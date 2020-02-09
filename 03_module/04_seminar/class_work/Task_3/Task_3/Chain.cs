@@ -9,7 +9,6 @@ namespace Task_3
     {
 
         // Events.
-        //internal event ChainLenChanged ChainLenChangedEvent;
         internal event ChainNChanged ChainNChangedEvent;
         internal event ChainRChanged ChainRChangedEvent;
         internal event ChainLenChanged ChainLenChangedEvent;
