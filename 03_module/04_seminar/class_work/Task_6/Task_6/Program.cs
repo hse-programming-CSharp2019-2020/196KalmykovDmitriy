@@ -64,7 +64,7 @@ namespace Task_6
 
         private static void Main()
         {
-            // Create wizrd.
+            // Create wizard.
             var wizard = new Wizard("Гендальф", "Хогварц");
 
             // Get all creatures.

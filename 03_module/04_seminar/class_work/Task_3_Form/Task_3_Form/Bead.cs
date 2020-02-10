@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Task_3
+namespace Task_3_Form
 {
-    /// <summary>
-    /// Class bead.
-    /// </summary>
-    internal class Bead
+    class Bead
     {
 
         // radius.
@@ -37,7 +34,10 @@ namespace Task_3
         internal void ChangeN(int amount, double len, List<Bead> beads)
         {
             foreach (var bead in beads)
+            {
                 bead.R = len / amount;
+            }
+            _r = len / amount;
         }
     }
 }

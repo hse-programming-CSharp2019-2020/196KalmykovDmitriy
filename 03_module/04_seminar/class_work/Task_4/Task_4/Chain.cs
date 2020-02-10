@@ -71,6 +71,18 @@ namespace Task_4
         }
 
         /// <summary>
+        /// Change N.
+        /// </summary>
+        /// <param name="sender"> Sender </param>
+        /// <param name="e"> E </param>
+        public void OnChainLenChangedHandler(object sender,
+            ChainNChangedEventArgs e)
+        {
+            foreach (var bead in _beads)
+                bead.R = e.Len / e.N;
+        }
+
+        /// <summary>
         /// Change N, because of radius of bead has changed.
         /// </summary>
         /// <param name="r"> New radius </param>
@@ -120,6 +132,6 @@ namespace Task_4
         public override string ToString() =>
             $"\nAmount of beads: {_n}\n" +
             $"Length of chain: {_len:0.##}\n" +
-            $"Radius of bead: {_len / _n:0.##}\n\n";
+            $"Radius of bead: {_beads[0].R:0.##}\n\n";
     }
 }

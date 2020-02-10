@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task_3
 {
-
     // Delegates.
     internal delegate void ChainLenChanged(double r);
-    internal delegate void ChainNChanged(int amount, double len);
+    internal delegate void ChainNChanged(int amount, double len, List<Bead> beads);
     internal delegate void ChainRChanged(double r);
 
     internal class Program
     {
+        // Как вариант, можно было использовать обычный TryParse.
+
         /// <summary>
         /// Get number.
         /// </summary>

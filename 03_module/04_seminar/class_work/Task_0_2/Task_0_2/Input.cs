@@ -12,7 +12,7 @@ namespace Task_0_2
         /// <summary>
         /// Method for get string from user.
         /// </summary>
-        public void GetUserInput()
+        internal void GetUserInput()
         {
             while (true)
             {

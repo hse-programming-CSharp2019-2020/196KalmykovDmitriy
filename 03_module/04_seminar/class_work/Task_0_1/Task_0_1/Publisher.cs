@@ -5,17 +5,17 @@ namespace Task_0_1
     internal class Publisher
     {
         // Delegate.
-        public delegate void Notify(string message);
+        internal delegate void Notify(string message);
 
         // Events.
-        public event Notify BeginOutput;
-        public event Notify EndOutput;
+        internal event Notify BeginOutput;
+        internal event Notify EndOutput;
 
         /// <summary>
         /// Display message.
         /// </summary>
         /// <param name="message"> Message </param>
-        public void Display(string message)
+        internal void Display(string message)
         {
             OnBeginOutput();
             Console.WriteLine(message);

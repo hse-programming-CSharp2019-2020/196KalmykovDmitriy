@@ -1,6 +1,6 @@
 ﻿namespace Task_2
 {
-    // Initialize some delegate.
+    // Initialize some delegates.
     internal delegate double ExpDel(double x);
     internal delegate void ExpChange();
 

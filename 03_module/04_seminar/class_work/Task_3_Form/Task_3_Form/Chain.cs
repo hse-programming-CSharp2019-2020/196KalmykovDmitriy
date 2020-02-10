@@ -1,21 +1,18 @@
 ﻿using System.Collections.Generic;
 
-namespace Task_3
+namespace Task_3_Form
 {
-    /// <summary>
-    /// Class Chain form beads.
-    /// </summary>
-    internal class Chain
+    class Chain
     {
         // Events.
         internal event ChainNChanged ChainNChangedEvent;
         internal event ChainRChanged ChainRChangedEvent;
         internal event ChainLenChanged ChainLenChangedEvent;
 
-        // Some variables.
+        // Some variable.
         private int _n;
         private double _len;
-        private readonly List<Bead> _beads = new List<Bead>();
+        internal List<Bead> Beads = new List<Bead>();
 
         // Property for length of chain.
         internal double Len
@@ -31,6 +28,7 @@ namespace Task_3
         }
 
 
+
         // Property for amount of beads.
         internal int N
         {
@@ -40,7 +38,8 @@ namespace Task_3
                 _n = value;
 
                 // Raise event.
-                ChainNChangedEvent?.Invoke(_n, _len, _beads);
+
+                ChainNChangedEvent?.Invoke(_n, _len, Beads);
             }
         }
 
@@ -51,17 +50,14 @@ namespace Task_3
         internal void ChangeR(double r) =>
             _n = (int)(_len / r);
 
-        /// <summary>
-        /// Change r with call event.
-        /// </summary>
-        /// <param name="r"> Radius </param>
         internal void ChangeRWithEvent(double r)
         {
-            foreach (var bead in _beads)
+            foreach (var bead in Beads)
                 bead.R = r;
 
             ChainRChangedEvent?.Invoke(r);
         }
+
 
         /// <summary>
         /// Change radius, because of length of chain has changed.
@@ -69,7 +65,7 @@ namespace Task_3
         /// <param name="r"> New radius </param>
         internal void ChangeLen(double r)
         {
-            foreach (var bead in _beads)
+            foreach (var bead in Beads)
                 bead.R = r;
         }
 
@@ -88,12 +84,12 @@ namespace Task_3
         /// <param name="amount"> Amount of beads </param>
         internal void CreateBeads(double r, int amount)
         {
-            _beads.Clear();
+            Beads.Clear();
 
             for (var i = 0; i < amount; i++)
             {
                 var bead = new Bead(r);
-                _beads.Add(bead);
+                Beads.Add(bead);
             }
         }
 
@@ -104,6 +100,6 @@ namespace Task_3
         public override string ToString() =>
             $"\nAmount of beads: {_n}\n" +
             $"Length of chain: {_len:0.##}\n" +
-            $"Radius of bead: {_beads[0].R:0.##}\n\n";
+            $"Radius of bead: {_len / _n:0.##}\n\n";
     }
 }

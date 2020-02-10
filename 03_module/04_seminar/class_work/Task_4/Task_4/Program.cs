@@ -7,6 +7,8 @@ namespace Task_4
 
     internal class Program
     {
+        // Как вариант, можно было написать обычный TryParse.
+
         /// <summary>
         /// Get number.
         /// </summary>
@@ -133,7 +135,7 @@ namespace Task_4
 
                 // Subscribe methods to events.
                 chain.OnChainLenChangedEvent += chain.OnChainLenChangedHandler;
-                chain.OnChainNChangedEvent+= new Bead(10).OnChainLenChangedHandler;
+                chain.OnChainNChangedEvent += chain.OnChainLenChangedHandler;
                 chain.ChainRChangedEvent += chain.ChangeR;
 
                 PrintMessage(chain.ToString(), ConsoleColor.Yellow);

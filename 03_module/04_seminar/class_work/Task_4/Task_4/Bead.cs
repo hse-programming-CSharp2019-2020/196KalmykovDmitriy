@@ -24,13 +24,6 @@ namespace Task_4
             _r = r;
         }
 
-        /// <summary>
-        /// Change N.
-        /// </summary>
-        /// <param name="sender"> Sender </param>
-        /// <param name="e"> E </param>
-        public void OnChainLenChangedHandler(object sender,
-            ChainNChangedEventArgs e) =>
-            _r = e.Len / e.N;
+        
     }
 }
