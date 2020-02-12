@@ -1,0 +1,4 @@
+            10, но опять тоже самое
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
