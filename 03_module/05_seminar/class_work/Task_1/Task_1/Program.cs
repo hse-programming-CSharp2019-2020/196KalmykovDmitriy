@@ -24,6 +24,7 @@ namespace Task_1
                 catch
                 {
                     Console.WriteLine(message);
+                    Console.WriteLine(message);
                 }
             }
         }
