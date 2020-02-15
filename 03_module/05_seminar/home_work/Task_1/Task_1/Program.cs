@@ -68,16 +68,34 @@ namespace Task_1
         /// <summary>
         /// Change sides.
         /// </summary>
-        /// <param name="block"> Block </param>
-        private static void ChangeSides(Block block)
+        private static void ChangeSides(Rectangle rectangle)
         {
-            // Get new sides.
-            var newSide1 = GetNumber<double>("Enter new side 1: ",
-                el => el > 0);
-            var newSide2 = GetNumber<double>("Enter new side 2: ",
-                el => el > 0);
+            PrintMessage("Enter number of side, which you want to change\n",
+                ConsoleColor.Yellow);
 
-            block.ChangeSide(newSide1, newSide2);
+            int choose;
+
+            // Get choose.
+            do
+            {
+                PrintMessage("Enter 1 or 2: ");
+            } while (!int.TryParse(Console.ReadLine(), out choose) ||
+                     choose != 2 && choose != 1);
+
+            if (choose == 1)
+            {
+               var newSide1 = GetNumber<double>("Enter new side 1: ",
+                    el => el > 0);
+
+               rectangle.Side1 = newSide1;
+            }
+            else
+            {
+                var newSide2 = GetNumber<double>("Enter new side 2: ",
+                    el => el > 0);
+
+                rectangle.Side2 = newSide2;
+            }
         }
 
         private static void Main()
@@ -97,10 +115,10 @@ namespace Task_1
                 PrintMessage($"Volume: {block.GetVolume()}\n", ConsoleColor.Yellow);
 
                 // Subscribe method to event.
-                block.SideHasChangedEvent += block.EventHandler;
+                rectangle.SideHasChangedEvent += block.EventHandler;
 
                 Console.WriteLine();
-                ChangeSides(block);
+                ChangeSides(rectangle);
 
                 PrintMessage("\nPress ESC for exit, press any other key for repeat solution",
                     ConsoleColor.Green);

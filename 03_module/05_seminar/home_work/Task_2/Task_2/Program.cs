@@ -74,16 +74,17 @@ namespace Task_2
                 var circle = new Circle(dot, radius);
 
                 // Subscribe method to event.
-                circle.XHasChangedEvent += delegate
+                dot.XHasChangedEvent += delegate (object sender, XHasChangedEventArgs e)
                 {
-                    PrintMessage($"\nMin X coordinate: {circle.GetMinX()}\n" +
+                    PrintMessage($"\nNew X: {e.NewX}\n" +
+                                 $"Min X coordinate: {circle.GetMinX()}\n" +
                                  $"Max X coordinate: {circle.GetMaxX()}\n\n", ConsoleColor.Yellow);
+
                 };
 
                 // Get new X.
                 var newX = GetNumber<double>("Enter new X coordinate of center of circle: ");
-
-                circle.ChangeXcoord(newX);
+                circle.Center.X = newX;
 
                 PrintMessage("Press ESC for exit, press any other key to repeat solution",
                     ConsoleColor.Green);
