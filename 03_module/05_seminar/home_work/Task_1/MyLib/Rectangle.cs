@@ -7,18 +7,24 @@ namespace MyLib
     /// </summary>
     public class Rectangle
     {
+        // Event.
         public event EventHandler<SideHasChangedEventArgs> SideHasChangedEvent;
 
+        /// <summary>
+        /// Raise event.
+        /// </summary>
+        /// <param name="e"> E </param>
         protected virtual void OnSideChanged(SideHasChangedEventArgs e) =>
             SideHasChangedEvent?.Invoke(this, e);
 
+        // Sides of rectangle.
         private double _side1;
         private double _side2;
 
         // Area of rectangle.
         public double Area => Side1 * Side2;
 
-        // Sides of rectangle.
+        // Side 1.
         public double Side1
         {
             get => _side1;
@@ -29,6 +35,7 @@ namespace MyLib
             }
         }
 
+        // Side 2.
         public double Side2
         {
             get => _side2;
