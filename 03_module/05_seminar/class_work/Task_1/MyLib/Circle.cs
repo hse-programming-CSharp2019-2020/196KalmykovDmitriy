@@ -20,6 +20,9 @@
             $"Radius: {Rad}\n" +
             $"(x, y): ({_center.X}, {_center.Y})\n";
 
+        // ALTERNATIVE: could be done without overriding > and <, 
+        // It is just easier.
+
         /// <summary>
         /// Override operator >.
         /// </summary>

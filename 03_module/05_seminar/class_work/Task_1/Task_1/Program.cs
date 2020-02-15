@@ -6,6 +6,8 @@ namespace Task_1
 {
     internal class Program
     {
+        // ALTERNATIVE: we can use common TryParse.
+
         /// <summary>
         /// Get number.
         /// </summary>
@@ -24,7 +26,7 @@ namespace Task_1
                     // attempt to convert string to required type.
                     var result = (T)Convert.ChangeType(Console.ReadLine(), typeof(T));
 
-                    // If there are no extra conditions
+                    // If there are no extra conditions.
                     if (conditions is null)
                         return result;
 
