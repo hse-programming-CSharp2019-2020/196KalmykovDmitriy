@@ -1,0 +1,11 @@
+Log started at 22.03.2020 14:45:30
+
+ParentForm and ChildForm loaded at 22.03.2020 14:45:30
+Button 2 was pressed at 22.03.2020 14:45:35
+Button 1 was pressed at 22.03.2020 14:45:36
+Mouse clicked on the ParentForm at 22.03.2020 14:45:39
+Mouse clicked on the ChildForm 22.03.2020 14:45:41
+ChildForm closed at 22.03.2020 14:45:44
+ParentForm closed at 22.03.2020 14:45:46
+
+Log finished at 22.03.2020 14:45:46
