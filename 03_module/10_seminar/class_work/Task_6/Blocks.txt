@@ -1,0 +1,13 @@
+Block height:: 13,130 Base::h: 11,080, w: 10,000
+Block height:: 10,480 Base::h: 12,260, w: 13,850
+Block height:: 14,150 Base::h: 12,330, w: 13,170
+Block height:: 14,040 Base::h: 12,760, w: 15,530
+Block height:: 11,850 Base::h: 17,640, w: 14,030
+Block height:: 10,000 Base::h: 12,540, w: 24,260
+Block height:: 19,210 Base::h: 13,400, w: 14,110
+Block height:: 21,530 Base::h: 14,710, w: 11,530
+Block height:: 19,040 Base::h: 21,950, w: 10,000
+Block height:: 16,230 Base::h: 18,020, w: 14,800
+Block height:: 12,040 Base::h: 19,160, w: 24,150
+Block height:: 19,760 Base::h: 19,670, w: 14,820
+Block height:: 14,710 Base::h: 24,440, w: 24,260
