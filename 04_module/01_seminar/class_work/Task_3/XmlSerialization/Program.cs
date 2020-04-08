@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
 using System.Xml.Serialization;
@@ -20,7 +21,7 @@ namespace XmlSerialization
         /// <returns> Quadratic </returns>
         private static Quadratic GetEquation()
         {
-            var a = Rnd.Next(Min, Max);
+            var a = Rnd. Next(Min, Max);
             var b = Rnd.Next(Min, Max);
             var c = Rnd.Next(Min, Max);
 
@@ -146,26 +147,29 @@ namespace XmlSerialization
 
         private static void Main()
         {
-            const string path = "equations.xml";
+            var list = Path.GetInvalidFileNameChars().ToList();
 
-            XmlSerialization(path, 5);
+            list.ForEach(Console.WriteLine);
+            //const string path = "equations.xml";
 
-            PrintMessage("Serialized recording.\n");
-            PrintMessage("Press any key to display on the screen.\n");
-            Console.ReadKey(true);
+            //XmlSerialization(path, 5);
 
-            PrintMessage("\nIn the file, information about the following equations:\n\n",
-                ConsoleColor.Yellow);
+            //PrintMessage("Serialized recording.\n");
+            //PrintMessage("Press any key to display on the screen.\n");
+            //Console.ReadKey(true);
 
-            XmlDeserialization(path, Processing.PrintEquation);
+            //PrintMessage("\nIn the file, information about the following equations:\n\n",
+            //    ConsoleColor.Yellow);
 
-            PrintMessage("Press any key to solve equations.\n", ConsoleColor.Yellow);
-            Console.ReadKey(true);
-            PrintMessage("\r\nSolutions of equations with real roots:\n\n");
+            //XmlDeserialization(path, Processing.PrintEquation);
 
-            XmlDeserialization(path, Processing.GetRealSolutions);
+            //PrintMessage("Press any key to solve equations.\n", ConsoleColor.Yellow);
+            //Console.ReadKey(true);
+            //PrintMessage("\r\nSolutions of equations with real roots:\n\n");
 
-            PrintMessage("\nPress ENTER to exit...", ConsoleColor.Green);
+            //XmlDeserialization(path, Processing.GetRealSolutions);
+
+            //PrintMessage("\nPress ENTER to exit...", ConsoleColor.Green);
             Console.ReadLine();
         }
     }
