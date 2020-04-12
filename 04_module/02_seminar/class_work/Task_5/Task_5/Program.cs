@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Security;
 
-namespace Task_3
+namespace Task_5
 {
     internal class Program
     {
@@ -23,17 +23,19 @@ namespace Task_3
             {
                 var colorName = lines[i].Split(':')[0];
 
-                var index = lines[i].IndexOf('#');
-                var colorR = lines[i].Substring(index + 1, 2);
-                var colorG = lines[i].Substring(index + 3, 2);
-                var colorB = lines[i].Substring(index + 5, 2);
+                var numbers = lines[i].Split(',', ' ');
+                for (var j = 0; j < numbers.Length; j++)
+                {
+                    numbers[j] = numbers[j].Trim('[', ']');
+                }
 
                 myColors[i - 1] = new MyColor
                 (
                     colorName,
-                    Convert.ToByte(colorR, 16),
-                    Convert.ToByte(colorG, 16),
-                    Convert.ToByte(colorB, 16)
+                    byte.Parse(numbers[3]),
+                    byte.Parse(numbers[5]),
+                    byte.Parse(numbers[7]),
+                    byte.Parse(numbers[9])
                 );
             }
 
@@ -97,7 +99,7 @@ namespace Task_3
         private static void Main()
         {
             var sep = Path.DirectorySeparatorChar;
-            var path = $@"..{sep}..{sep}..{sep}css-color-names.json";
+            var path = $@"..{sep}..{sep}..{sep}colors.json";
 
             var lines = File.ReadAllLines(path);
 
@@ -107,8 +109,7 @@ namespace Task_3
 
             foreach (var color in myColors)
             {
-                Enum.TryParse(color.ColorName, out ConsoleColor consoleColor);
-                PrintMessage(color.ColorName, consoleColor);
+                Console.WriteLine(color);
             }
 
             PrintMessage("\nPress ENTER to exit...", ConsoleColor.Green);
