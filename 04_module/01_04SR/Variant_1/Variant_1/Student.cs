@@ -16,7 +16,6 @@ namespace Variant_1
 
         public Student() { }
 
-
         /// <summary>
         /// Get amount of tasks.
         /// </summary>

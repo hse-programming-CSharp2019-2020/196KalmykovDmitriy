@@ -11,6 +11,8 @@ namespace Variant_1
 
         public ControlElement() { }
 
+        // ALTERNATIVE: Could we use common for-loop instead regex expression.
+
         /// <summary>
         /// Check name.
         /// </summary>
