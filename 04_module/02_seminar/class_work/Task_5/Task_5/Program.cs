@@ -1,119 +1,108 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Security;
+using System.Threading.Tasks;
+using Task_5;
 
-namespace Task_5
+namespace Task5
 {
-    internal class Program
+    class Program
     {
-        /// <summary>
-        /// Get array of colors.
-        /// </summary>
-        /// <param name="lines"> lines from file </param>
-        /// <returns> Array of colors </returns>
-        private static MyColor[] GetArray(IReadOnlyList<string> lines)
+        static void Main(string[] args)
         {
-            var myColors = new MyColor[lines.Count - 2];
+            string inputPath = @"colors.json";
+            string outputPath = @"newColors.json";
 
-            for (var i = 1; i < lines.Count - 1; i++)
-            {
-                var colorName = lines[i].Split(':')[0];
+            List<MyColor> colors = ParseColors(inputPath);
 
-                var numbers = lines[i].Split(',', ' ');
-                for (var j = 0; j < numbers.Length; j++)
-                {
-                    numbers[j] = numbers[j].Trim('[', ']');
-                }
+            Console.WriteLine("\tCOLORS:");
+            foreach (var item in colors)
+                Console.WriteLine(item);
 
-                myColors[i - 1] = new MyColor
-                (
-                    colorName,
-                    byte.Parse(numbers[3]),
-                    byte.Parse(numbers[5]),
-                    byte.Parse(numbers[7]),
-                    byte.Parse(numbers[9])
-                );
-            }
-
-            return myColors;
+            JsonSerializationAsync(outputPath, colors);
+            Console.WriteLine("\nPress any key to exit");
+            Console.ReadKey();
         }
 
-        /// <summary>
-        /// Serialize colors.
-        /// </summary>
-        /// <param name="myColors"> Colors </param>
-        private static void SerializeColors(IEnumerable myColors)
-        {
-            using (var fs = new FileStream("test.txt", FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                var formatter = new DataContractJsonSerializer(typeof(MyColor[]));
-
-                formatter.WriteObject(fs, myColors);
-            }
-        }
-
-        /// <summary>
-        /// Json Serialize.
-        /// </summary>
-        /// <param name="myColors"> Colors </param>
-        private static void JsonSerialize(IEnumerable myColors)
+        static void JsonSerializationAsync(string path, List<MyColor> colors)
         {
             try
             {
-                SerializeColors(myColors);
+                // Serialization
+                using (FileStream fs = new FileStream("test2339.txt", FileMode.Create))
+                {
+                    JsonSerializer.SerializeAsync(fs, colors);
+                }
+                Console.WriteLine("\nObjects were successfully serialized");
             }
-            catch (SerializationException ex)
+            catch (IOException e)
             {
-                PrintMessage($"Serialize error: {ex.Message}!\n", ConsoleColor.Red);
+                Console.WriteLine("Writing objects in file exception: " + e.Message);
             }
-            catch (IOException ex)
+            catch (SerializationException e)
             {
-                PrintMessage($"Problem with file: {ex.Message}!\n", ConsoleColor.Red);
+                Console.WriteLine("Serialization exception");
             }
-            catch (SecurityException ex)
+            catch (Exception e)
             {
-                PrintMessage($"Access error: {ex.Message}!\n", ConsoleColor.Red);
-            }
-            catch (Exception ex)
-            {
-                PrintMessage($"Unexpected error: {ex.Message}!\n", ConsoleColor.Red);
+                Console.WriteLine(e.Message);
             }
         }
 
         /// <summary>
-        /// Print color message.
+        /// Parsing file's info method
         /// </summary>
-        /// <param name="message"> Message </param>
-        /// <param name="color"> Message's color </param>
-        private static void PrintMessage(string message, ConsoleColor color = ConsoleColor.Cyan)
+        /// <param name="path">File's path</param>
+        /// <returns>List of colors</returns>
+        static List<MyColor> ParseColors(string path)
         {
-            Console.ForegroundColor = color;
-            Console.Write(message);
-            Console.ResetColor();
-        }
-
-        private static void Main()
-        {
-            var sep = Path.DirectorySeparatorChar;
-            var path = $@"..{sep}..{sep}..{sep}colors.json";
-
-            var lines = File.ReadAllLines(path);
-
-            var myColors = GetArray(lines);
-
-            JsonSerialize(myColors);
-
-            foreach (var color in myColors)
+            List<MyColor> colors = new List<MyColor>();
+            try
             {
-                Console.WriteLine(color);
-            }
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        // Checking if it is first or last line with brackets
+                        if (line == "{" || line == "}")
+                            continue;
 
-            PrintMessage("\nPress ENTER to exit...", ConsoleColor.Green);
-            Console.ReadLine();
+                        // Getting color's name
+                        string name = line.Substring(line.IndexOf('"') + 1, line.IndexOf(':') - 3);
+                        name = name.Trim('"');
+
+                        line = line.Remove(0, line.IndexOf('['));
+                        line = line.Trim('[', ']', ',');
+
+                        // Getting RGB and alpha values
+                        var numbers = line.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        colors.Add(new MyColor(
+                            name,
+                            byte.Parse(numbers[0]),
+                            byte.Parse(numbers[1]),
+                            byte.Parse(numbers[2]),
+                            byte.Parse(numbers[3])
+                            )
+                        );
+                    }
+                }
+
+                return colors;
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("File reading exception: " + e.Message);
+                return colors;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while parsing: " + e.Message);
+                return colors;
+            }
         }
     }
 }

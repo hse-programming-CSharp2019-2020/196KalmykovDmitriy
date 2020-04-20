@@ -11,7 +11,7 @@ namespace Task_5
 
         internal MyColor(string color, byte r, byte g, byte b, byte alpha)
         {
-            var temp = color.Substring(3);
+            var temp = color.Substring(1);
             temp = temp.Substring(0, temp.Length - 1);
             var str = char.ToUpper(temp[0]) + temp.Substring(1);
 

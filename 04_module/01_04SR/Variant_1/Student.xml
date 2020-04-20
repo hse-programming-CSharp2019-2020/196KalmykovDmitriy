@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Student xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Мшиегзшяыкх</Name>
+  <Surname>Зежбкцк</Surname>
+  <Works>
+    <ControlElement xsi:type="ControlWork">
+      <Weight>16</Weight>
+      <Name>Пнаэеыэ</Name>
+      <Variant>0</Variant>
+    </ControlElement>
+    <ControlElement xsi:type="ControlWork">
+      <Weight>53</Weight>
+      <Name>Ьыовфтъгджтй</Name>
+      <Variant>1</Variant>
+    </ControlElement>
+    <ControlElement xsi:type="Contest">
+      <Weight>1</Weight>
+      <Name>Скяуул</Name>
+      <TasksNumber>5</TasksNumber>
+    </ControlElement>
+    <ControlElement xsi:type="Contest">
+      <Weight>52</Weight>
+      <Name>Щасщм</Name>
+      <TasksNumber>9</TasksNumber>
+    </ControlElement>
+    <ControlElement xsi:type="ControlWork">
+      <Weight>62</Weight>
+      <Name>Нюшкаи</Name>
+      <Variant>0</Variant>
+    </ControlElement>
+    <ControlElement xsi:type="ControlWork">
+      <Weight>55</Weight>
+      <Name>Ъгаьт</Name>
+      <Variant>1</Variant>
+    </ControlElement>
+    <ControlElement xsi:type="Contest">
+      <Weight>15</Weight>
+      <Name>Флвэгдбдюгб</Name>
+      <TasksNumber>2</TasksNumber>
+    </ControlElement>
+    <ControlElement xsi:type="ControlWork">
+      <Weight>16</Weight>
+      <Name>Спугы</Name>
+      <Variant>0</Variant>
+    </ControlElement>
+    <ControlElement xsi:type="ControlWork">
+      <Weight>72</Weight>
+      <Name>Фцжеы</Name>
+      <Variant>0</Variant>
+    </ControlElement>
+    <ControlElement xsi:type="Contest">
+      <Weight>19</Weight>
+      <Name>Щекяс</Name>
+      <TasksNumber>6</TasksNumber>
+    </ControlElement>
+  </Works>
+</Student>
