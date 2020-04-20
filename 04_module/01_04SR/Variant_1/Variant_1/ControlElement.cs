@@ -22,7 +22,9 @@ namespace Variant_1
         {
             var pattern = $@"^[А-Я][а-я]{{{name.Length - 1}}}";
 
-            return Regex.IsMatch(name, pattern) && name.Length >= 2 && name.Length <= 12;
+            return Regex.IsMatch(name, pattern)
+                   && name.Length >= Program.MinNameLength
+                   && name.Length <= Program.MaxNameLength;
         }
 
         /// <summary>
@@ -32,7 +34,9 @@ namespace Variant_1
         /// <param name="name"> Name of test </param>
         /// <returns> True of false </returns>
         private bool IsCorrectValues(int weight, string name) =>
-            weight > 0 && weight <= 80 && IsCorrectName(name);
+               weight > Program.MinWeight
+            && weight <= Program.MaxWeight
+            && IsCorrectName(name);
 
         internal ControlElement(int weight, string name)
         {

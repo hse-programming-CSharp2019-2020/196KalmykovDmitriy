@@ -9,6 +9,9 @@ namespace Variant_1
     {
         private static readonly Random Rnd = new Random(DateTime.Now.Millisecond);
 
+        private const int MinWorksLength = 5;
+        private const int MaxWorksLength = 10;
+
         public string Name;
         public string Surname;
 
@@ -21,21 +24,21 @@ namespace Variant_1
         /// </summary>
         /// <returns> Amount of tasks </returns>
         private static int GetTasksNumber() =>
-            Rnd.Next(1, 11);
+            Rnd.Next(Program.MinTasksNumber, Program.MaxTasksNumber + 1);
 
         /// <summary>
         /// Get weight of tasks.
         /// </summary>
         /// <returns> Weight of tasks </returns>
         private static int GetWeight() =>
-            Rnd.Next(1, 81);
+            Rnd.Next(Program.MinWeight + 1, Program.MaxWeight + 1);
 
         /// <summary>
         /// Fill list of works.
         /// </summary>
         private void FillWorks()
         {
-            var length = Rnd.Next(5, 11);
+            var length = Rnd.Next(MinWorksLength, MaxWorksLength + 1);
 
             for (var i = 0; i < length; i++)
             {

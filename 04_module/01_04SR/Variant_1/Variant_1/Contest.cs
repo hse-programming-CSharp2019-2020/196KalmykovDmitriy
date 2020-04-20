@@ -15,7 +15,8 @@ namespace Variant_1
         /// <param name="tasksNumber"> Amount of tasks </param>
         /// <returns> True or false </returns>
         private bool IsCorrectValue(int tasksNumber) =>
-            tasksNumber >= 1 && tasksNumber <= 10;
+               tasksNumber >= Program.MinTasksNumber 
+            && tasksNumber <= Program.MaxTasksNumber;
 
         internal Contest(int weight, string name, int tasksNumber) : base(weight, name)
         {

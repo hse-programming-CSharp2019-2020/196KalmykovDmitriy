@@ -11,7 +11,7 @@ namespace Variant_1
 
         internal ControlWork(int weight, string name, int variant) : base(weight, name)
         {
-            if (variant < 0)
+            if (variant < Program.MinVariant)
                 throw new ArgumentOutOfRangeException();
 
             Variant = variant;

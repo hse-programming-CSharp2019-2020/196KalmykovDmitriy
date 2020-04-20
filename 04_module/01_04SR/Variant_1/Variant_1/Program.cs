@@ -10,6 +10,17 @@ namespace Variant_1
     {
         private static readonly Random Rnd = new Random(DateTime.Now.Millisecond);
 
+        internal const int MinNameLength = 2;
+        internal const int MaxNameLength = 12;
+
+        internal const int MinWeight = 0;
+        internal const int MaxWeight = 80;
+
+        internal const int MinTasksNumber = 1;
+        internal const int MaxTasksNumber = 10;
+        
+        internal const int MinVariant = 0;
+
         /// <summary>
         /// Print color message.
         /// </summary>
@@ -130,7 +141,7 @@ namespace Variant_1
         /// <returns> Name </returns>
         internal static string GetRandomName()
         {
-            var length = Rnd.Next(2, 13);
+            var length = Rnd.Next(MinNameLength, MaxNameLength + 1);
 
             var result = string.Empty;
             result += (char)Rnd.Next('А', 'Я' + 1);

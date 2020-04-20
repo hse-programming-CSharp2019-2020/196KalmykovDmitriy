@@ -1,57 +1,42 @@
 <?xml version="1.0"?>
 <Student xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>Мшиегзшяыкх</Name>
-  <Surname>Зежбкцк</Surname>
+  <Name>Кваз</Name>
+  <Surname>Юэуп</Surname>
   <Works>
+    <ControlElement xsi:type="Contest">
+      <Weight>5</Weight>
+      <Name>Куйтьэс</Name>
+      <TasksNumber>3</TasksNumber>
+    </ControlElement>
     <ControlElement xsi:type="ControlWork">
-      <Weight>16</Weight>
-      <Name>Пнаэеыэ</Name>
+      <Weight>59</Weight>
+      <Name>Ъврхфэш</Name>
       <Variant>0</Variant>
     </ControlElement>
     <ControlElement xsi:type="ControlWork">
-      <Weight>53</Weight>
-      <Name>Ьыовфтъгджтй</Name>
+      <Weight>67</Weight>
+      <Name>Дгаркгжж</Name>
       <Variant>1</Variant>
     </ControlElement>
     <ControlElement xsi:type="Contest">
-      <Weight>1</Weight>
-      <Name>Скяуул</Name>
-      <TasksNumber>5</TasksNumber>
-    </ControlElement>
-    <ControlElement xsi:type="Contest">
-      <Weight>52</Weight>
-      <Name>Щасщм</Name>
-      <TasksNumber>9</TasksNumber>
-    </ControlElement>
-    <ControlElement xsi:type="ControlWork">
-      <Weight>62</Weight>
-      <Name>Нюшкаи</Name>
-      <Variant>0</Variant>
-    </ControlElement>
-    <ControlElement xsi:type="ControlWork">
-      <Weight>55</Weight>
-      <Name>Ъгаьт</Name>
-      <Variant>1</Variant>
-    </ControlElement>
-    <ControlElement xsi:type="Contest">
-      <Weight>15</Weight>
-      <Name>Флвэгдбдюгб</Name>
+      <Weight>28</Weight>
+      <Name>Уфхп</Name>
       <TasksNumber>2</TasksNumber>
     </ControlElement>
-    <ControlElement xsi:type="ControlWork">
-      <Weight>16</Weight>
-      <Name>Спугы</Name>
-      <Variant>0</Variant>
+    <ControlElement xsi:type="Contest">
+      <Weight>54</Weight>
+      <Name>Чьышнкяй</Name>
+      <TasksNumber>8</TasksNumber>
     </ControlElement>
     <ControlElement xsi:type="ControlWork">
-      <Weight>72</Weight>
-      <Name>Фцжеы</Name>
-      <Variant>0</Variant>
+      <Weight>66</Weight>
+      <Name>Ырэеы</Name>
+      <Variant>1</Variant>
     </ControlElement>
     <ControlElement xsi:type="Contest">
-      <Weight>19</Weight>
-      <Name>Щекяс</Name>
-      <TasksNumber>6</TasksNumber>
+      <Weight>35</Weight>
+      <Name>Хнгпцщътю</Name>
+      <TasksNumber>7</TasksNumber>
     </ControlElement>
   </Works>
 </Student>
