@@ -61,28 +61,36 @@ namespace DataBaseTask2
                 }
 
 
-                // Try catch.
                 SerializeObjects(db);
                 var dbNew = GetNewDataBase();
-                Console.Clear();
-                Tasks.Task1(db);
-                Tasks.Task2(db);
-                Tasks.Task3(db);
-                Tasks.Task4(db);
+
+                TestProgram(db);
+
+                
                 Console.WriteLine("Press esc to exit");
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
-            //Console.WriteLine("Serialization was successful");
-
-            Console.WriteLine();
 
         }
-        // категория самого дорого товара
 
+        /// <summary>
+        /// Test program.
+        /// </summary>
+        /// <param name="db"> Data base </param>
+        private static void TestProgram(DataBase db)
+        {
+            Tasks.Task1(db);
+            Tasks.Task2(db);
+            Tasks.Task3(db);
+            Tasks.Task4(db);
+            Tasks.Task5(db);
+            Tasks.Task6(db);
+            Tasks.Task7(db);
+        }
 
-
-
-
-
+        /// <summary>
+        /// Insert objects to data base.
+        /// </summary>
+        /// <param name="db"> Data base </param>
         private static void InsertObjects(ref DataBase db)
         {
             InsertShops(ref db);
@@ -111,9 +119,12 @@ namespace DataBaseTask2
             db.CreateTable<Sale>();
         }
 
+        /// <summary>
+        /// Gt new db.
+        /// </summary>
+        /// <returns> Data base </returns>
         private static DataBase GetNewDataBase()
         {
-
             var dbNew = new DataBase("ShopDataBase");
 
             CreateTables(ref dbNew);
@@ -123,6 +134,7 @@ namespace DataBaseTask2
             IEnumerable<Buyer> buyers = Deserialize<Buyer>(PathDbBuyer);
             IEnumerable<Sale> sales = Deserialize<Sale>(PathDbSale);
 
+            // Fill new db.
             foreach (var shop in shops)
             {
                 dbNew.InsertInto(new ShopFactory(shop.Name, shop.City, shop.District,
@@ -149,6 +161,12 @@ namespace DataBaseTask2
             return dbNew;
         }
 
+        /// <summary>
+        /// Universal serialize.
+        /// </summary>
+        /// <typeparam name="T"> Type of parameters </typeparam>
+        /// <param name="path"> Path to file </param>
+        /// <param name="args"> Parameters </param>
         private static void Serialize<T>(string path, T args)
         {
             try
@@ -174,6 +192,12 @@ namespace DataBaseTask2
             }
         }
 
+        /// <summary>
+        /// Deserialize.
+        /// </summary>
+        /// <typeparam name="T"> Type of parameters </typeparam>
+        /// <param name="path"> Path to file </param>
+        /// <returns> List of new objects </returns>
         private static IEnumerable<T> Deserialize<T>(string path)
         {
             try
@@ -203,6 +227,10 @@ namespace DataBaseTask2
             return Enumerable.Empty<T>();
         }
 
+        /// <summary>
+        /// Insert shops to db.
+        /// </summary>
+        /// <param name="db"> db </param>
         private static void InsertShops(ref DataBase db)
         {
             db.InsertInto(new ShopFactory("Auchan", "Moscow",
@@ -215,6 +243,10 @@ namespace DataBaseTask2
                 "District 3", "Russia", "32135829481"));
         }
 
+        /// <summary>
+        /// Insert goods.
+        /// </summary>
+        /// <param name="db"> db </param>
         private static void InsertGoods(ref DataBase db)
         {
             db.InsertInto(new GoodFactory("Pepsi", 1, "Category 1"));
@@ -223,6 +255,10 @@ namespace DataBaseTask2
             db.InsertInto(new GoodFactory("Lays", 3, "Category 1"));
         }
 
+        /// <summary>
+        /// Insert db.
+        /// </summary>
+        /// <param name="db"> db </param>
         private static void InsertBuyers(ref DataBase db)
         {
             db.InsertInto(new BuyerFactory("Dima_1", "Kalmykov_1", "Home_1",

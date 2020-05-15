@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataBaseTask2
 {
@@ -31,7 +29,7 @@ namespace DataBaseTask2
                 .FirstOrDefault();
 
             Console.WriteLine();
-            Console.WriteLine($"Goods purchased by the user with the longest name: {result}");
+            Console.WriteLine($"Task 1: {result}");
         }
 
         internal static void Task2(DataBase db)
@@ -53,7 +51,7 @@ namespace DataBaseTask2
                 .FirstOrDefault();
 
             Console.WriteLine();
-            Console.WriteLine($"Category of the most expensive products: {categoryMostExpensiveGood}");
+            Console.WriteLine($"Task2: {categoryMostExpensiveGood}");
         }
 
         internal static void Task3(DataBase db)
@@ -89,7 +87,7 @@ namespace DataBaseTask2
             }
 
             Console.WriteLine();
-            Console.WriteLine($"City: {minCity}");
+            Console.WriteLine($"Task 3: {minCity}");
         }
 
         internal static void Task4(DataBase db)
@@ -112,11 +110,65 @@ namespace DataBaseTask2
                 .ToList();
 
             Console.WriteLine();
-            Console.WriteLine("Surnames: ");
+            Console.WriteLine("Task 4: ");
             foreach (var item in query)
             {
                 Console.WriteLine(item);
             }
+        }
+
+        internal static void Task5(DataBase db)
+        {
+            // Найти кол-во магазинов в странеЮ где их меньше всего.
+            var shopsByCountry = db
+                .Table<Shop>()
+                .GroupBy(s => s.Country);
+
+            var min = shopsByCountry
+                .Select(shops => shops.Count())
+                .Concat(new[] { int.MaxValue })
+                .Min();
+
+            Console.WriteLine();
+            Console.WriteLine($"Task 5: {min}");
+        }
+
+        internal static void Task6(DataBase db)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Task 6:");
+            // Найти покупки, которые были сделаны не в своём городе
+            foreach (var buyer in db.Table<Buyer>())
+            {
+                Console.WriteLine();
+                foreach (var shop in db.Table<Shop>())
+                {
+                    Console.WriteLine($"{shop.City}: ");
+                    if (buyer.City != shop.City)
+                    {
+                        IEnumerable<long> query = db
+                            .Table<Sale>()
+                            .Where(s => s.ShopId == shop.Id)
+                            .Select(s => s.GoodId);
+
+                        foreach (var item in query)
+                        {
+                            Console.WriteLine(item);
+                        }
+                    }
+                }
+            }
+        }
+
+        internal static void Task7(DataBase db)
+        {
+            // стоимость всех покупок
+            Console.WriteLine();
+            var res = db
+                .Table<Sale>()
+                .Sum(s => s.Cost);
+
+            Console.WriteLine($"Task 7: {res}");
         }
     }
 }
